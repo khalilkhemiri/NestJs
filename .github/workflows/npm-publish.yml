@@ -18,9 +18,15 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'adopt'  # ou 'zulu', 'temurin', etc.
+          java-package: jdk
+          architecture: x64
 
       - name: Install dependencies
         run: npm install
+
+      - name: Run tests and collect coverage
+        run: npm run test:cov
 
       - name: Run SonarCloud analysis
         env:
@@ -32,4 +38,3 @@ jobs:
           -Dsonar.sources=src \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
