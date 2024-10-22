@@ -1,4 +1,4 @@
-name: SonarQube Scan
+name: SonarCloud Scan
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  sonarQube:
+  sonarcloud:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,10 +22,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run SonarQube analysis
+      - name: Run SonarCloud analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Ajoutez votre token dans les secrets de votre repo
         run: |
           npx sonar-scanner \
-          -Dsonar.projectKey=my_nestjs_project \
+          -Dsonar.projectKey=khalilkhemiri \
+          -Dsonar.organization=khalilkhemiri \
           -Dsonar.sources=src \
-          -Dsonar.host.url=http://localhost:9000 \
+          -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
