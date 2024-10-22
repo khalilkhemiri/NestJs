@@ -33,7 +33,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           npx sonar-scanner \
-          -Dsonar.projectKey=khalilkhemiri \
+          -Dsonar.projectKey=khalilkh \
           -Dsonar.organization=khalilkhemiri \
           -Dsonar.sources=src \
           -Dsonar.host.url=https://sonarcloud.io \
